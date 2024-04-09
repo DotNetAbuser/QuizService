@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace Server.Controllers.Identity;
+﻿namespace Server.Controllers.Identity;
 
 [ApiController]
 [Route("api/identity/user")]
@@ -9,11 +7,7 @@ public class UserController(
     : ControllerBase
 {
     [HttpGet]
-<<<<<<< HEAD
     [Authorize(Roles = "admin")]
-=======
-    // [Authorize(Roles = "Admin")]
->>>>>>> origin/main
     public async Task<IActionResult> GetPaginatedUsersAsync(
         int pageNumber, int pageSize, string? searchTerm, string? sortColumn, string? sortOrder)
     {
@@ -52,17 +46,6 @@ public class UserController(
         return Ok(await _userService.ToggleUserStatusAsync(request));
     }
     
-<<<<<<< HEAD
-=======
-    [HttpGet("role/{userId}")]
-    // [Authorize (Roles = "admin")]
-    public async Task<IActionResult> GetRolesByUserIdAsync(string userId)
-    {
-        var response = await _userService.GetRolesByUserIdAsync(userId);
-        return Ok(response);
-    }
-    
->>>>>>> origin/main
     [HttpPut("role/{userId}")]
     // [Authorize (Roles = "admin")]
     public async Task<IActionResult> UpdateRolesByUserIdAsync(string userId, UpdateUserRoleRequest request)
