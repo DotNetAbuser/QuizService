@@ -4,7 +4,8 @@ var configuration  = builder.Configuration;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => 
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = false);;
 
 builder.Services.AddDatabase(configuration);
 

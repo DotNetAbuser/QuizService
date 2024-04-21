@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    Shell.TabBarIsVisible="False"
+    x:Class="Mobile.Views.Main.CreateTestView"
+    x:DataType="vm:CreateTestVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:Mobile.Controls"
+    xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="auto, auto, *, auto" RowSpacing="10">
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
+            <VerticalStackLayout
+                Grid.Row="1"
+                Padding="20,0"
+                Spacing="15">
+                <Label Style="{StaticResource Title}" Text="Создание теста" />
+                <VerticalStackLayout Spacing="10">
+                    <controls:BorderEntry Placeholder="Название теста" Text="{Binding Title}" />
+                    <controls:BorderNumericEntry Count="{Binding CorrectAnswersCount}" Placeholder="Кол-во правильных ответов для прохождения теста" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <Border Grid.Row="2">
+                <CollectionView ItemsSource="{Binding QuestionList}">
+                    <CollectionView.Header>
+                        <Grid
+                            ColumnDefinitions="*, *"
+                            Margin="0,10"
+                            Padding="20,0">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="24"
+                                Text="Вопросы"
+                                VerticalOptions="Center" />
+                            <Button
+                                Command="{Binding AddQuestionCommand}"
+                                Grid.Column="1"
+                                Text="Создать вопрос" />
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Question">
+                            <Border Margin="20,10" Padding="20,20">
+                                <Grid RowDefinitions="auto, *" RowSpacing="10">
+                                    <controls:BorderEntry Placeholder="Вопрос" Text="{Binding QuestionContent}" />
+                                    <CollectionView Grid.Row="1" ItemsSource="{Binding Options}">
+                                        <CollectionView.Header>
+                                            <VerticalStackLayout Spacing="5">
+                                                <Button
+                                                    BackgroundColor="Red"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CreateTestVM}}, Path=RemoveQuestionCommand}"
+                                                    CommandParameter="{Binding .}"
+                                                    Text="Удалить вопрос" />
+                                            </VerticalStackLayout>
+                                        </CollectionView.Header>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Option">
+                                                <Grid ColumnDefinitions="*, auto">
+                                                    <controls:BorderEntry Placeholder="Ответ" Text="{Binding OptionContent}" />
+                                                    <CheckBox Grid.Column="1" IsChecked="{Binding IsRight}" />
+                                                </Grid>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+
+            <Button
+                Command="{Binding CreateTestCommand}"
+                FontAttributes="Bold"
+                FontSize="20"
+                Grid.Row="3"
+                Margin="10"
+                Text="Сохранить тест" />
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

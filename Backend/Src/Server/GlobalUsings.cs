@@ -12,3 +12,4 @@ global using System.Security.Claims;
 global using Shared.Constants;
 global using Microsoft.AspNetCore.Authorization;
 global using Infrastructure.Authorization;
+global using Shared.Requests.Quiz;

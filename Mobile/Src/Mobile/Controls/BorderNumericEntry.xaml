@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<VerticalStackLayout
+    x:Class="Mobile.Controls.BorderNumericEntry"
+    x:Name="this"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Label
+        FontAttributes="Bold"
+        FontSize="18"
+        Text="{Binding Source={x:Reference this}, Path=Placeholder}" />
+
+    <Grid ColumnDefinitions="*, 60, 60" ColumnSpacing="5">
+        <Border
+            BackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
+                                              Dark={StaticResource Gray950}}"
+            Grid.Column="0"
+            HeightRequest="65"
+            Padding="20,0"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 10">
+            <Entry
+                FontSize="24"
+                IsReadOnly="True"
+                Keyboard="Numeric"
+                Text="{Binding Source={x:Reference this}, Path=Count}"
+                VerticalOptions="Center" />
+        </Border>
+        <Button
+            BackgroundColor="{StaticResource Primary}"
+            Clicked="IncreaseBtn_OnClicked"
+            FontSize="28"
+            Grid.Column="1"
+            Text="+"
+            x:Name="IncreaseBtn" />
+        <Button
+            BackgroundColor="{StaticResource Primary}"
+            Clicked="DecreaseBtn_OnClicked"
+            FontSize="28"
+            Grid.Column="2"
+            Text="-"
+            x:Name="DecreaseBtn" />
+
+    </Grid>
+</VerticalStackLayout>

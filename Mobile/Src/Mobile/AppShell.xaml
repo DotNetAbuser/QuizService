@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarIsVisible="False"
+    Title="Mobile"
     x:Class="Mobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Mobile"
-    Shell.FlyoutBehavior="Disabled"
-    Title="Mobile">
+    xmlns:main="clr-namespace:Mobile.Views.Main"
+    xmlns:start="clr-namespace:Mobile.Views.Start"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" StatusBarStyle="{AppThemeBinding Light=DarkContent, Dark=LightContent}" />
+    </ContentPage.Behaviors>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <ShellContent ContentTemplate="{DataTemplate start:StartUpView}" Route="StartUpView" />
+    <ShellContent ContentTemplate="{DataTemplate start:SignInView}" Route="SignInView" />
+
+
+    <TabBar Shell.TabBarIsVisible="True">
+        <Tab
+            Icon="tests.svg"
+            Route="StudentTab"
+            Title="Тесты">
+            <ShellContent ContentTemplate="{DataTemplate main:TestsView}" Title="Тесты для прохождения" />
+        </Tab>
+        <Tab Icon="tests_results.svg" Title="Результаты">
+            <ShellContent ContentTemplate="{DataTemplate main:TestsResultsView}" Title="Результаты прохождения тестов" />
+        </Tab>
+        <Tab Icon="profile.svg" Title="Профиль">
+            <ShellContent ContentTemplate="{DataTemplate main:ProfileView}" Title="Профиль" />
+        </Tab>
+    </TabBar>
+
+    <TabBar Shell.TabBarIsVisible="True">
+        <Tab
+            Icon="tests.svg"
+            Route="TeacherTab"
+            Title="Панель тестов">
+            <ShellContent ContentTemplate="{DataTemplate main:TestsPanelView}" Title="Панель тестов" />
+        </Tab>
+        <Tab Icon="tests_results.svg" Title="Результаты">
+            <ShellContent ContentTemplate="{DataTemplate main:TestsResultsView}" Title="Результаты прохождения тестов" />
+        </Tab>
+        <Tab Icon="profile.svg" Title="Профиль">
+            <ShellContent ContentTemplate="{DataTemplate main:ProfileView}" Title="Профиль" />
+        </Tab>
+    </TabBar>
+
+    <TabBar Shell.TabBarIsVisible="True">
+        <Tab
+            Icon="users.svg"
+            Route="AdminTab"
+            Title="Панель пользователей">
+            <ShellContent ContentTemplate="{DataTemplate main:UsersPanelView}" Title="Панель пользователей" />
+        </Tab>
+        <Tab Icon="tests.svg" Title="Панель тестов">
+            <ShellContent ContentTemplate="{DataTemplate main:TestsPanelView}" Title="Панель тестов" />
+        </Tab>
+        <Tab Icon="tests_results.svg" Title="Результаты">
+            <ShellContent ContentTemplate="{DataTemplate main:TestsResultsView}" Title="Результаты студентов" />
+        </Tab>
+        <Tab Icon="profile.svg" Title="Профиль">
+            <ShellContent ContentTemplate="{DataTemplate main:ProfileView}" Title="Профиль" />
+        </Tab>
+    </TabBar>
 
 </Shell>

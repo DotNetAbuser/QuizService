@@ -3,8 +3,8 @@
 public interface IUserRepository
 {
     Task<PaginatedDataResponse<UserEntity>> GetPaginatedUsersAsync(
-        int pageNumber, int pageSize, string searchTerm, string sortColumn, string sortOrder);
-    Task<UserEntity?> GetByUserIdAsync(Guid id);
+        int pageNumber, int pageSize, string searchTerm, string sortOrder);
+    Task<UserEntity?> GetByIdAsync(Guid id);
     Task<UserEntity?> GetByUsernameAsync(string value);
 
     

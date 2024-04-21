@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Border
+    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
+                                      Dark={StaticResource Gray950}}"
+    HeightRequest="65"
+    Stroke="Transparent"
+    StrokeShape="RoundRectangle 10"
+    x:Class="Mobile.Controls.BorderEntry"
+    x:Name="this"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid ColumnDefinitions="15,*, 40,15" ColumnSpacing="5">
+
+        <Entry
+            Grid.Column="1"
+            IsPassword="{Binding Source={x:Reference this}, Path=IsPassword}"
+            Text="{Binding Source={x:Reference this}, Path=Text}"
+            VerticalOptions="Center"
+            x:Name="txtEntry" />
+        <Label
+            Grid.Column="1"
+            HorizontalOptions="Start"
+            IsVisible="False"
+            Text="{Binding Source={x:Reference this}, Path=Placeholder}"
+            TextColor="{StaticResource Gray400}"
+            VerticalOptions="Center">
+            <Label.Triggers>
+                <MultiTrigger TargetType="Label">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={x:Reference txtEntry}, Path=Text.Length}" Value="0" />
+                        <BindingCondition Binding="{Binding Source={x:Reference txtEntry}, Path=IsFocused}" Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsVisible" Value="True" />
+                </MultiTrigger>
+            </Label.Triggers>
+        </Label>
+
+
+        <Image Grid.Column="2" Source="{Binding Source={x:Reference this}, Path=Image}">
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+            </Image.Behaviors>
+        </Image>
+
+    </Grid>
+    <Border.Triggers>
+        <DataTrigger
+            Binding="{Binding Source={x:Reference txtEntry}, Path=IsFocused}"
+            TargetType="Border"
+            Value="True">
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        </DataTrigger>
+    </Border.Triggers>
+</Border>

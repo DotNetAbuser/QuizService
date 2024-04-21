@@ -8,7 +8,7 @@ public class OptionConfiguration : IEntityTypeConfiguration<OptionEntity>
         builder.HasKey(x => x.Id);
 
         builder
-            .HasOne(x => x.ResultDetail)
+            .HasMany(x => x.ResultDetails)
             .WithOne(x => x.Option);
         builder
             .HasOne(x => x.Question)

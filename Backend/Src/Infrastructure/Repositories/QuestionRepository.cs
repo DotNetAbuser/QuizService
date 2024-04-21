@@ -1,7 +1,15 @@
 ﻿namespace Infrastructure.Repositories;
 
-public class QuestionRepository(ApplicationDbContext dbContext)
+public class QuestionRepository(
+    ApplicationDbContext _dbContext)
     : IQuestionRepository
 {
-    private readonly ApplicationDbContext _dbContext = dbContext;
+    public async Task<IEnumerable<QuestionEntity>> GetAllByQuizId(Guid QuizId)
+    {
+        return await _dbContext.Questions
+            .AsNoTracking()
+            .Include(x => x.Options)
+            .Where(x => x.QuizId == QuizId)
+            .ToListAsync();
+    }
 }

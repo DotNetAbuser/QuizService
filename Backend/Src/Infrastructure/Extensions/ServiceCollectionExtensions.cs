@@ -27,7 +27,10 @@ public static class ServiceCollectionExtensions
         return services
             .AddTransient<IAccountService, AccountService>()
             .AddTransient<ITokenService, TokenService>()
-            .AddTransient<IUserService, UserService>();
+            .AddTransient<IUserService, UserService>()
+            .AddTransient<ITestService, TestService>()
+            .AddTransient<IResultService, ResultService>();
+
     }
 
 }

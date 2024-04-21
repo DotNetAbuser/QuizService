@@ -6,7 +6,7 @@ public class ResultDetailConfiguration : IEntityTypeConfiguration<ResultDetailEn
     public void Configure(EntityTypeBuilder<ResultDetailEntity> builder)
     {
         builder.HasKey(x => x.Id);
-
+        
         builder
             .HasOne(x => x.Result)
             .WithMany(x => x.ResultDetails)
@@ -17,8 +17,8 @@ public class ResultDetailConfiguration : IEntityTypeConfiguration<ResultDetailEn
             .HasForeignKey(x => x.QuestionId);
         builder
             .HasOne(x => x.Option)
-            .WithOne(x => x.ResultDetail)
-            .HasForeignKey<ResultDetailEntity>(x => x.OptionId);
+            .WithMany(x => x.ResultDetails)
+            .HasForeignKey(x => x.OptionId);
         
     }
 }

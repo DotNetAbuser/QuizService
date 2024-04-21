@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    Shell.TabBarIsVisible="False"
+    x:Class="Mobile.Views.Main.EditUserView"
+    x:DataType="vm:EditUserVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:models="clr-namespace:Shared.Responses.Identity;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Resources>
+        <DataTemplate x:DataType="models:UserRoleModel" x:Key="dtUserRole">
+            <Border StrokeShape="RoundRectangle 10">
+                <RadioButton
+                    Content="{Binding RoleName}"
+                    GroupName="{Binding Source={RelativeSource AncestorType={x:Type vm:EditUserVM}}, Path=UserId}"
+                    IsChecked="{Binding Selected}" />
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto, *">
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
+            <VerticalStackLayout
+                Grid.Row="1"
+                Padding="20,0"
+                Spacing="20">
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding Username}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding Email}"
+                        TextColor="{StaticResource Primary}" />
+                    <HorizontalStackLayout Spacing="3">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="{Binding LastName}" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="{Binding FirstName}" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="{Binding MiddleName}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <CollectionView ItemTemplate="{StaticResource dtUserRole}" ItemsSource="{Binding UserRoleList}" />
+
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <CheckBox IsChecked="{Binding IsActive}" />
+                    <Label Text="Пользователь активирован" VerticalTextAlignment="Center" />
+                </HorizontalStackLayout>
+
+                <Button Command="{Binding SaveDataCommand}" Text="Сохранить" />
+            </VerticalStackLayout>
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

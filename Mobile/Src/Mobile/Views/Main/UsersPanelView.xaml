@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Mobile.Views.Main.UsersPanelView"
+    x:DataType="vm:UsersPanelVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:Mobile.Controls"
+    xmlns:models="clr-namespace:Shared.Responses.Identity;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+
+        <RefreshView Command="{Binding RefreshDataCommand}" IsRefreshing="{Binding IsBusy}">
+            <Grid Padding="20,0" RowDefinitions="50, *">
+
+                <controls:BorderSearchBar
+                    Grid.Row="0"
+                    Placeholder="Поиск..."
+                    SearchCommand="{Binding SearchCommand}"
+                    Text="{Binding SearchTerm}" />
+                <CollectionView
+                    Grid.Row="1"
+                    ItemsSource="{Binding UsersList}"
+                    RemainingItemsThreshold="2"
+                    RemainingItemsThresholdReachedCommand="{Binding GetNextDataCommand}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:UserResponse">
+                            <Border Margin="0,5" StrokeShape="RoundRectangle 20">
+                                <Grid ColumnDefinitions="*, 100">
+                                    <VerticalStackLayout
+                                        Grid.Column="0"
+                                        Padding="20,10"
+                                        Spacing="4">
+                                        <Label FontAttributes="Bold" Text="{Binding Username}" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="{Binding Email}"
+                                            TextColor="{StaticResource Primary}" />
+                                        <HorizontalStackLayout Spacing="4">
+                                            <Label FontAttributes="Bold" Text="{Binding LastName}" />
+                                            <Label FontAttributes="Bold" Text="{Binding FirstName}" />
+                                            <Label FontAttributes="Bold" Text="{Binding MiddleName}" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        IsEnabled="False"
+                                        VerticalOptions="Center">
+                                        <Label Text="Активен">
+                                            <Label.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsActive}"
+                                                    TargetType="Label"
+                                                    Value="False">
+                                                    <Setter Property="Text" Value="Не активен" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <CheckBox IsChecked="{Binding IsActive}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:UsersPanelVM}}, Path=GoToEditUserViewCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <Grid>
+                            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsFooterLoading}" />
+                        </Grid>
+                    </CollectionView.Footer>
+                </CollectionView>
+
+            </Grid>
+        </RefreshView>
+
+    </ContentPage.Content>
+</ContentPage>

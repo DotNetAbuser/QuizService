@@ -34,7 +34,7 @@ namespace Application.Migrations
                     b.Property<bool>("IsRight")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Option")
+                    b.Property<string>("OptionContent")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -60,10 +60,7 @@ namespace Application.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Index")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Question")
+                    b.Property<string>("QuestionContent")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -86,11 +83,11 @@ namespace Application.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("CorrectAnswersCount")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("Index")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -159,8 +156,7 @@ namespace Application.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OptionId")
-                        .IsUnique();
+                    b.HasIndex("OptionId");
 
                     b.HasIndex("QuestionId");
 
@@ -178,7 +174,7 @@ namespace Application.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("IsRight")
+                    b.Property<bool>("IsPassed")
                         .HasColumnType("boolean");
 
                     b.Property<Guid>("QuizId")
@@ -228,19 +224,19 @@ namespace Application.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 4, 9, 20, 4, 52, 651, DateTimeKind.Utc).AddTicks(9355),
+                            Created = new DateTime(2024, 4, 15, 12, 39, 23, 510, DateTimeKind.Utc).AddTicks(3671),
                             Name = "student"
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 4, 9, 20, 4, 52, 651, DateTimeKind.Utc).AddTicks(9365),
+                            Created = new DateTime(2024, 4, 15, 12, 39, 23, 510, DateTimeKind.Utc).AddTicks(3682),
                             Name = "teacher"
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 4, 9, 20, 4, 52, 651, DateTimeKind.Utc).AddTicks(9369),
+                            Created = new DateTime(2024, 4, 15, 12, 39, 23, 510, DateTimeKind.Utc).AddTicks(3686),
                             Name = "admin"
                         });
                 });
@@ -308,42 +304,42 @@ namespace Application.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c304a29a-eec4-41ae-98f1-67d5fec0dcad"),
-                            Created = new DateTime(2024, 4, 9, 20, 4, 52, 804, DateTimeKind.Utc).AddTicks(8092),
+                            Id = new Guid("120dab18-b7f8-42fc-b491-6ee71e7ba123"),
+                            Created = new DateTime(2024, 4, 15, 12, 39, 23, 661, DateTimeKind.Utc).AddTicks(998),
                             Email = "student@example.com",
                             FirstName = "Имя",
                             IsActive = true,
                             LastName = "Фамилия",
                             MiddleName = "Отчество",
-                            PasswordHash = "$2a$11$0d56jxNnjaYSHbRyxwe6JeDmBxtYa5jcu0fn1btGQmY9czP.xG5eW",
+                            PasswordHash = "$2a$11$q4cM/9I6hM.VIhd1cZVPION6/7rarsx7B5./6yW2wLi/IC/dWfVo.",
                             Phone = "+79177793601",
                             RoleId = 1,
                             Username = "student"
                         },
                         new
                         {
-                            Id = new Guid("3515e327-cb7a-4da9-8fd0-3b17f6f26cf9"),
-                            Created = new DateTime(2024, 4, 9, 20, 4, 52, 955, DateTimeKind.Utc).AddTicks(1755),
+                            Id = new Guid("2cb58b74-ccbd-4287-9591-17e627bf0b79"),
+                            Created = new DateTime(2024, 4, 15, 12, 39, 23, 812, DateTimeKind.Utc).AddTicks(905),
                             Email = "teacher@example.com",
                             FirstName = "Имя",
                             IsActive = true,
                             LastName = "Фамилия",
                             MiddleName = "Отчество",
-                            PasswordHash = "$2a$11$5.tHhgPryyp12GvjSLbyHuEDdQjTMFgd0wChicgO.hEdixPqmwU7G",
+                            PasswordHash = "$2a$11$aP6ODb8VtXSakApfcg/r6.WSiC0euuKp6c3178ZEQnjKwl8ogciRm",
                             Phone = "+79177793602",
                             RoleId = 2,
                             Username = "teacher"
                         },
                         new
                         {
-                            Id = new Guid("e22ad7a0-f7f4-41ac-8fff-25cbaf95105c"),
-                            Created = new DateTime(2024, 4, 9, 20, 4, 53, 108, DateTimeKind.Utc).AddTicks(8333),
+                            Id = new Guid("45ae58f7-a56c-4b64-b9ba-d632c2c3a2ee"),
+                            Created = new DateTime(2024, 4, 15, 12, 39, 23, 962, DateTimeKind.Utc).AddTicks(1563),
                             Email = "admin@example.com",
                             FirstName = "Имя",
                             IsActive = true,
                             LastName = "Фамилия",
                             MiddleName = "Отчество",
-                            PasswordHash = "$2a$11$BD9LTa2jM39GU4yxFg43Keoiw89IkoRLnFu3Pl6jascmtD3hWaNdm",
+                            PasswordHash = "$2a$11$2oBXCzyzqEpWI4woGj7U1.8oyiXXETRzDxeTfeh1ofUx5NSrcpn0.",
                             Phone = "+79177793603",
                             RoleId = 3,
                             Username = "admin"
@@ -386,8 +382,8 @@ namespace Application.Migrations
             modelBuilder.Entity("Domain.Entities.ResultDetailEntity", b =>
                 {
                     b.HasOne("Domain.Entities.OptionEntity", "Option")
-                        .WithOne("ResultDetail")
-                        .HasForeignKey("Domain.Entities.ResultDetailEntity", "OptionId")
+                        .WithMany("ResultDetails")
+                        .HasForeignKey("OptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -442,8 +438,7 @@ namespace Application.Migrations
 
             modelBuilder.Entity("Domain.Entities.OptionEntity", b =>
                 {
-                    b.Navigation("ResultDetail")
-                        .IsRequired();
+                    b.Navigation("ResultDetails");
                 });
 
             modelBuilder.Entity("Domain.Entities.QuestionEntity", b =>

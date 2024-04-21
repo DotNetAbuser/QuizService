@@ -9,15 +9,15 @@ public class UserController(
     [HttpGet]
     [Authorize(Roles = "admin")]
     public async Task<IActionResult> GetPaginatedUsersAsync(
-        int pageNumber, int pageSize, string? searchTerm, string? sortColumn, string? sortOrder)
+        int pageNumber, int pageSize, string? searchTerm, string? sortOrder)
     {
         var response = await _userService.GetPaginatedUsersAsync(
-            pageNumber, pageSize, searchTerm, sortColumn, sortOrder);
+            pageNumber, pageSize, searchTerm, sortOrder);
         return Ok(response);
     }
         
     [HttpGet("{userId}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetByIdAsync(string userId)
     {
         var response = await _userService.GetByIdAsync(userId);
@@ -34,20 +34,20 @@ public class UserController(
     
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> SignUpAsync(RegisterRequest request)
+    public async Task<IActionResult> SignUpAsync(SignUpRequest request)
     {
-        return Ok(await _userService.RegisterUserAsync(request));
+        return Ok(await _userService.SignUpAsync(request));
     }
     
     [HttpPost("toggle-status")]
-    // [Authorize (Roles = "admin")]
+    [Authorize (Roles = "admin")]
     public async Task<IActionResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
     {
         return Ok(await _userService.ToggleUserStatusAsync(request));
     }
     
     [HttpPut("role/{userId}")]
-    // [Authorize (Roles = "admin")]
+    [Authorize (Roles = "admin")]
     public async Task<IActionResult> UpdateRolesByUserIdAsync(string userId, UpdateUserRoleRequest request)
     {
         var currentUserId = HttpContext.User.GetLoggedInUserId<string>();

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Mobile.Views.Main.TestsPanelView"
+    x:DataType="vm:TestsPanelVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:models="clr-namespace:Shared.Responses.Quiz;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshDataCommand}" IsRefreshing="{Binding IsBusy}">
+            <Grid
+                Padding="20,0"
+                RowDefinitions="auto, *"
+                RowSpacing="20">
+                <VerticalStackLayout Grid.Row="0" Spacing="10">
+                    <Label Style="{StaticResource Title}" Text="Тесты" />
+                    <Button
+                        Command="{Binding GoToCreateTestViewCommand}"
+                        FontAttributes="Bold"
+                        Text="Создать новый тест" />
+                </VerticalStackLayout>
+                <Border
+                    Grid.Row="1"
+                    Padding="10"
+                    StrokeShape="RoundRectangle 10">
+                    <CollectionView ItemsSource="{Binding TestList}">
+                        <CollectionView.Header>
+                            <VerticalStackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="28"
+                                    Text="Все тесты" />
+                            </VerticalStackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:TestResponse">
+                                <SwipeView>
+
+                                    <SwipeView.RightItems>
+                                        <SwipeItem
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TestsPanelVM}}, Path=DeleteTestCommand}"
+                                            CommandParameter="{Binding Id}"
+                                            IconImageSource="trash.svg" />
+                                    </SwipeView.RightItems>
+                                    <Border
+                                        BackgroundColor="{StaticResource Primary}"
+                                        HeightRequest="70"
+                                        Margin="0,3"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="0">
+                                        <Label
+                                            FontSize="20"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource Title}"
+                                            Text="{Binding Title}"
+                                            TextColor="{StaticResource White}"
+                                            VerticalOptions="Center" />
+                                    </Border>
+                                </SwipeView>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+
+            </Grid>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Mobile.Views.Main.TestsView"
+    x:DataType="vm:TestsVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:models="clr-namespace:Shared.Responses.Quiz;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+
+        <RefreshView Command="{Binding RefreshDataCommand}" IsRefreshing="{Binding IsBusy}">
+            <ScrollView>
+                <VerticalStackLayout Padding="20,0">
+                    <Label Style="{StaticResource Title}" Text="Тесты" />
+                    <CollectionView ItemsLayout="VerticalGrid, 2" ItemsSource="{Binding TestList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:TestResponse">
+                                <Border
+                                    BackgroundColor="{StaticResource Primary}"
+                                    HeightRequest="180"
+                                    Margin="3"
+                                    StrokeShape="RoundRectangle 10"
+                                    StrokeThickness="0"
+                                    WidthRequest="180">
+                                    <Label
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource Title}"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="Center" />
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TestsVM}}, Path=GoToStartTestViewCommand}" CommandParameter="{Binding .}" />
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+
+    </ContentPage.Content>
+</ContentPage>

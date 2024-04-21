@@ -4,7 +4,7 @@ public class UserRepository(ApplicationDbContext _dbContext)
     : IUserRepository
 {
     public async Task<PaginatedDataResponse<UserEntity>> GetPaginatedUsersAsync(
-        int pageNumber, int pageSize, string searchTerm, string sortColumn, string sortOrder)
+        int pageNumber, int pageSize, string searchTerm, string sortOrder)
     {
         var query = _dbContext.Users
             .AsNoTracking();
@@ -27,9 +27,9 @@ public class UserRepository(ApplicationDbContext _dbContext)
         
         var list = await query
             .AsNoTracking()
-            .Include(x => x.Role)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
+            .Include(x => x.Role)
             .ToListAsync();
         var totalCount = await _dbContext.Users
             .AsNoTracking()
@@ -37,7 +37,7 @@ public class UserRepository(ApplicationDbContext _dbContext)
         return new PaginatedDataResponse<UserEntity>(list, totalCount);
     }
     
-    public async Task<UserEntity?> GetByUserIdAsync(Guid id)
+    public async Task<UserEntity?> GetByIdAsync(Guid id)
     {
         return await _dbContext.Users
             .AsNoTracking()

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Mobile.Views.Main.ProfileView"
+    x:DataType="vm:ProfileVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:Mobile.Controls"
+    xmlns:converters="clr-namespace:Mobile.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Resources>
+        <converters:FirstNameToFirstCharConverter x:Key="cnvFirstNameToFirstCharConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+
+        <RefreshView Command="{Binding RefreshDataCommand}" IsRefreshing="{Binding IsBusy}">
+            <ScrollView>
+                <VerticalStackLayout Padding="20,0" Spacing="10">
+
+                    <VerticalStackLayout Spacing="15">
+                        <Border
+                            BackgroundColor="{StaticResource Primary}"
+                            HeightRequest="100"
+                            StrokeShape="RoundRectangle 50"
+                            WidthRequest="100">
+                            <Label
+                                FontSize="32"
+                                HorizontalOptions="Center"
+                                Text="{Binding FirstName, Converter={StaticResource cnvFirstNameToFirstCharConverter}}"
+                                TextColor="{StaticResource White}"
+                                VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="3">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding LastName}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding FirstName}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding MiddleName}" />
+                            </HorizontalStackLayout>
+                            <Label
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="{Binding Email}"
+                                TextColor="{StaticResource Primary}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <controls:ProfileButton
+                            ButtonCommand="{Binding SignOutCommand}"
+                            ButtonDescription="Выйти из текущей учётной записи."
+                            ButtonTitle="Выйти"
+                            ImageActionSource="sign_out.svg" />
+                    </VerticalStackLayout>
+
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+
+    </ContentPage.Content>
+</ContentPage>

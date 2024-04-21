@@ -28,11 +28,29 @@ build_metadata.AdditionalFiles.ManifestResourceName = Mobile.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/MainPage.xaml]
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Controls/BorderEntry.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = Mobile.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Controls.BorderEntry.xaml
+build_metadata.AdditionalFiles.TargetPath = Controls\BorderEntry.xaml
+build_metadata.AdditionalFiles.RelativePath = Controls\BorderEntry.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Controls/BorderNumericEntry.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Controls.BorderNumericEntry.xaml
+build_metadata.AdditionalFiles.TargetPath = Controls\BorderNumericEntry.xaml
+build_metadata.AdditionalFiles.RelativePath = Controls\BorderNumericEntry.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Controls/BorderSearchBar.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Controls.BorderSearchBar.xaml
+build_metadata.AdditionalFiles.TargetPath = Controls\BorderSearchBar.xaml
+build_metadata.AdditionalFiles.RelativePath = Controls\BorderSearchBar.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Controls/ProfileButton.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Controls.ProfileButton.xaml
+build_metadata.AdditionalFiles.TargetPath = Controls\ProfileButton.xaml
+build_metadata.AdditionalFiles.RelativePath = Controls\ProfileButton.xaml
 
 [C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
@@ -40,8 +58,86 @@ build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Resources.Styles.Co
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Resources/Styles/CustomStyles/Buttons.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Resources.Styles.CustomStyles.Buttons.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\CustomStyles\Buttons.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\CustomStyles\Buttons.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Resources/Styles/CustomStyles/Labels.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Resources.Styles.CustomStyles.Labels.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\CustomStyles\Labels.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\CustomStyles\Labels.xaml
+
 [C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/CreateTestView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.CreateTestView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\CreateTestView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\CreateTestView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/EditUserView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.EditUserView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\EditUserView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\EditUserView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/ProfileView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.ProfileView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\ProfileView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\ProfileView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/StartTestView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.StartTestView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\StartTestView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\StartTestView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/TestsPanelView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.TestsPanelView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\TestsPanelView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\TestsPanelView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/TestsResultsView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.TestsResultsView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\TestsResultsView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\TestsResultsView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/TestsView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.TestsView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\TestsView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\TestsView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Main/UsersPanelView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Main.UsersPanelView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Main\UsersPanelView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Main\UsersPanelView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Start/SignInView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Start.SignInView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Start\SignInView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Start\SignInView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Start/SignUpView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Start.SignUpView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Start\SignUpView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Start\SignUpView.xaml
+
+[C:/Users/ilyao/Desktop/Projects/QuizService/Mobile/Src/Mobile/Views/Start/StartUpView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile.Views.Start.StartUpView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Start\StartUpView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Start\StartUpView.xaml

@@ -71,7 +71,7 @@ public class TokenService(IOptions<JwtOptions> _jwtOptions,
                 .FailAsync("Сессия устарела, необходимо вновь пройти аунтификацию!");
         }
 
-        var userEntity = await _userRepository.GetByUserIdAsync(refreshSessionEntity.UserId);
+        var userEntity = await _userRepository.GetByIdAsync(refreshSessionEntity.UserId);
         if (userEntity == null)
         {
             await _refreshSessionRepository.DeleteAsync(refreshSessionEntity);

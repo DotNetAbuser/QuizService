@@ -21,3 +21,8 @@ global using Shared.Constants;
 global using System.IdentityModel.Tokens.Jwt;
 global using Infrastructure.Authorization;
 global using Microsoft.Extensions.Options;
+global using Shared.Responses.Quiz;
+global using Shared.Models;
+global using Shared.Requests.Quiz;
+global using Shared.Models;
+

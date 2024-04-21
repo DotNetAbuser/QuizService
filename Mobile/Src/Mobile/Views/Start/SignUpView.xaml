@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Mobile.Views.Start.SignUpView"
+    x:DataType="vm:SignUpVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:Mobile.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Start"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="40, *">
+
+            <ActivityIndicator Grid.Row="0" IsRunning="{Binding IsBusy}" />
+
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Padding="20,0" Spacing="20">
+
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource Title}"
+                        Text="Регистрация" />
+                    <VerticalStackLayout Spacing="10">
+
+                        <controls:BorderEntry
+                            Image="user.svg"
+                            Placeholder="Введите фамилию"
+                            Text="{Binding LastName}" />
+                        <controls:BorderEntry
+                            Image="user.svg"
+                            Placeholder="Введите имя"
+                            Text="{Binding FirstName}" />
+                        <controls:BorderEntry
+                            Image="user.svg"
+                            Placeholder="Введите отчество(при наличие)"
+                            Text="{Binding MiddleName}" />
+                        <controls:BorderEntry
+                            Image="user.svg"
+                            Placeholder="Введите имя пользователя"
+                            Text="{Binding Username}" />
+                        <controls:BorderEntry
+                            Image="lock.svg"
+                            IsPassword="True"
+                            Placeholder="Введите пароль"
+                            Text="{Binding Password}" />
+                        <controls:BorderEntry
+                            Image="email.svg"
+                            Placeholder="Введите почту"
+                            Text="{Binding Email}" />
+                        <controls:BorderEntry
+                            Image="phone.svg"
+                            Placeholder="Введите номер телефона"
+                            Text="{Binding Phone}" />
+                    </VerticalStackLayout>
+                    <Button
+                        Command="{Binding SignUpCommand}"
+                        Style="{StaticResource Button1}"
+                        Text="Зарегистрироваться"
+                        WidthRequest="300" />
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

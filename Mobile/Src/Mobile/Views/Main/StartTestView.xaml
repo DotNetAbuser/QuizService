@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    Shell.TabBarIsVisible="False"
+    x:Class="Mobile.Views.Main.StartTestView"
+    x:DataType="vm:StartTestVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid RowDefinitions="40, *">
+
+            <ActivityIndicator Grid.Row="0" IsRunning="{Binding IsBusy}" />
+
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Padding="20,0" Spacing="20">
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            Text="{Binding Title}"
+                            TextColor="{StaticResource Primary}" />
+                        <HorizontalStackLayout Spacing="5">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="Нужно правильных ответов: " />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="{Binding CorrectAnswerCount}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <CollectionView ItemsSource="{Binding QuestionsList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Question">
+                                <VerticalStackLayout Margin="0,10">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        Text="{Binding QuestionContent}" />
+                                    <CollectionView ItemsSource="{Binding Options}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Option">
+                                                <Border
+                                                    Margin="0,3"
+                                                    Padding="10,15"
+                                                    StrokeShape="RoundRectangle 10">
+                                                    <RadioButton
+                                                        Content="{Binding OptionContent}"
+                                                        FontAttributes="Bold"
+                                                        FontSize="20"
+                                                        GroupName="{Binding QustionId}"
+                                                        IsChecked="{Binding IsSelected}" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button
+                        Command="{Binding FinishTestCommand}"
+                        Margin="10"
+                        Style="{StaticResource Button1}"
+                        Text="Закончить тест" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

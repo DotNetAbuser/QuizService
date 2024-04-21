@@ -9,10 +9,10 @@ public class UserService(
     : IUserService
 {
     public async Task<Result<PaginatedDataResponse<UserResponse>>> GetPaginatedUsersAsync(
-        int pageNumber, int pageSize, string searchTerm, string sortColumn, string sortOrder)
+        int pageNumber, int pageSize, string searchTerm, string sortOrder)
     {
         var paginatedUsersEntities = await _userRepository.GetPaginatedUsersAsync(
-            pageNumber, pageSize, searchTerm, sortColumn, sortOrder);
+            pageNumber, pageSize, searchTerm, sortOrder);
         var usersResponse = paginatedUsersEntities.List.Select(userEntity => new UserResponse()
             {
                 Id = userEntity.Id.ToString(),
@@ -24,8 +24,7 @@ public class UserService(
                 Phone = userEntity.Phone,
                 IsActive = userEntity.IsActive,
                 Created = userEntity.Created
-            })
-            .ToList();
+            }).ToList();
 
         var paginatedUsersResponse = new PaginatedDataResponse<UserResponse>(
             list: usersResponse, totalCount: paginatedUsersEntities.TotalCount);
@@ -35,7 +34,7 @@ public class UserService(
     
     public async Task<Result<UserResponse>> GetByIdAsync(string userId)
     {
-        var userEntity = await _userRepository.GetByUserIdAsync(Guid.Parse(userId));
+        var userEntity = await _userRepository.GetByIdAsync(Guid.Parse(userId));
         if (userEntity == null)
         {
             return await Result<UserResponse>
@@ -57,7 +56,7 @@ public class UserService(
             .SuccessAsync(userResponse, "Пользователь успешно получен.");
     }
     
-    public async Task<Result> RegisterUserAsync(RegisterRequest request)
+    public async Task<Result> SignUpAsync(SignUpRequest request)
     {
         var usernameIsExist = await _userRepository
             .IsExistByUsernameAsync(request.Username.ToLower());
@@ -105,7 +104,7 @@ public class UserService(
     public async Task<Result> ToggleUserStatusAsync(ToggleUserStatusRequest request)
     {
         var userEntity = await _userRepository
-            .GetByUserIdAsync(Guid.Parse(request.UserId));
+            .GetByIdAsync(Guid.Parse(request.UserId));
         if (userEntity == null)
         {
             return await Result<string>
@@ -123,7 +122,7 @@ public class UserService(
     {
         var rolesEntities = await _roleRepository.GetAllAsync();
         var user = await _userRepository
-            .GetByUserIdAsync(Guid.Parse(userId));
+            .GetByIdAsync(Guid.Parse(userId));
         var userRolesList = rolesEntities
             .Select(roleEntity => new UserRoleModel
             {
@@ -138,7 +137,7 @@ public class UserService(
     public async Task<Result> UpdateRoleAsync(string userId, UpdateUserRoleRequest request, string currentUserId)
     {
         var userEntity = await _userRepository
-            .GetByUserIdAsync(Guid.Parse(userId));
+            .GetByIdAsync(Guid.Parse(userId));
         var isDefaultUser = userEntity.Email == "student@example.com" ||
                             userEntity.Email == "teacher@example.com" ||
                             userEntity.Email == "admin@example.com";

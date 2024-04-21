@@ -2,11 +2,12 @@
 
 public interface IUserService
 { 
-    Task<Result<PaginatedDataResponse<UserResponse>>> GetPaginatedUsersAsync(int pageNumber, int pageSize, string searchTerm, string sortColumn, string sortOrder);
+    Task<Result<PaginatedDataResponse<UserResponse>>> GetPaginatedUsersAsync(
+        int pageNumber, int pageSize, string searchTerm, string sortOrder);
     Task<Result<UserResponse>> GetByIdAsync(string userId);
     
     
-    Task<Result> RegisterUserAsync(RegisterRequest request);
+    Task<Result> SignUpAsync(SignUpRequest request);
     Task<Result> ToggleUserStatusAsync(ToggleUserStatusRequest request);
     
     Task<Result<UserRolesResponse>> GetRolesByUserIdAsync(string userId);

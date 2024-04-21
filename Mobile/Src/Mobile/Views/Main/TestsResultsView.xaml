@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Mobile.Views.Main.TestsResultsView"
+    x:DataType="vm:TestsResultsVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:Mobile.Controls"
+    xmlns:models="clr-namespace:Shared.Responses.Quiz;assembly=Shared"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Mobile.ViewModels.Main"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Resources>
+        <DataTemplate x:DataType="models:UserTestResultResponse" x:Key="StudentTemplate">
+            <Border
+                Margin="0,5,0,0"
+                Stroke="{StaticResource Black}"
+                StrokeShape="RoundRectangle 15">
+                <Grid ColumnDefinitions="*, 150">
+                    <VerticalStackLayout Padding="30,15" VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="28"
+                            Text="{Binding Title}" />
+                        <HorizontalStackLayout>
+                            <Label FontSize="24" Text="{Binding CorrectAnswersCount}" />
+                            <Label FontSize="24" Text="/" />
+                            <Label FontSize="24" Text="{Binding QuestionsCount}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        Text="Пройден"
+                        TextColor="ForestGreen"
+                        VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsPassed}"
+                                TargetType="Label"
+                                Value="False">
+                                <Setter Property="Text" Value="Не пройден" />
+                                <Setter Property="TextColor" Value="Red" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:DataType="models:UserTestResultResponse" x:Key="TeacherTemplate">
+            <Border
+                HeightRequest="120"
+                Margin="0,5,0,0"
+                Stroke="{StaticResource Black}"
+                StrokeShape="RoundRectangle 15">
+                <Grid ColumnDefinitions="*, 150">
+                    <VerticalStackLayout Padding="30,15" VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="28"
+                            Text="{Binding Title}" />
+                        <HorizontalStackLayout>
+                            <Label FontSize="24" Text="{Binding CorrectAnswersCount}" />
+                            <Label FontSize="24" Text="/" />
+                            <Label FontSize="24" Text="{Binding QuestionsCount}" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="{Binding LastName}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="{Binding FirstName}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="{Binding MiddleName}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        Text="Пройден"
+                        TextColor="ForestGreen"
+                        VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsPassed}"
+                                TargetType="Label"
+                                Value="False">
+                                <Setter Property="Text" Value="Не пройден" />
+                                <Setter Property="TextColor" Value="Red" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingViewCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingViewCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshDataCommand}" IsRefreshing="{Binding IsBusy}">
+            <Grid
+                Padding="20,0"
+                RowDefinitions="auto,*"
+                RowSpacing="10">
+                <controls:BorderSearchBar Placeholder="Поиск..." Text="{Binding SearchTerm}" />
+                <CollectionView
+                    Grid.Row="1"
+                    ItemTemplate="{StaticResource TeacherTemplate}"
+                    ItemsSource="{Binding UserTestResultList}"
+                    RemainingItemsThreshold="1"
+                    RemainingItemsThresholdReachedCommand="{Binding GetNextDataCommand}">
+                    <CollectionView.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsStudent}"
+                            TargetType="CollectionView"
+                            Value="True">
+                            <Setter Property="ItemTemplate" Value="{StaticResource StudentTemplate}" />
+                        </DataTrigger>
+                    </CollectionView.Triggers>
+                    <CollectionView.Footer>
+                        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsFooterLoading}" />
+                    </CollectionView.Footer>
+                </CollectionView>
+            </Grid>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

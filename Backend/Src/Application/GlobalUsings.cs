@@ -7,3 +7,6 @@ global using Shared.Wrapper;
 global using Shared.Requests.Identity;
 global using Shared.Responses;
 global using Shared.Responses.Identity;
+global using Shared.Responses.Quiz;
+global using Shared.Requests.Quiz;
+global using Shared.Models;
