@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "D0oFpzKWBMIdFjdZdqQXhZ8pjG6yvimV5uRuusw+pLNUH7/g7/kW6n90PzSqqBiPHkl2Wlim5Z1LKMmDTeUqqw==",
+  "dgSpecHash": "4f/03Nun90MIEnKac5bfUZw4SLRObWpb4ncCWH9ltIlwIo9FsdNzpaQY4453c08jU5lHuEu0nijv2k/9XUXmOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ilyao\\Desktop\\Projects\\QuizService\\Backend\\Src\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -46,5 +46,16 @@
     "C:\\Users\\ilyao\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Npgsql' 8.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-x9vc-6hfv-hg8c",
+      "libraryId": "Npgsql",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

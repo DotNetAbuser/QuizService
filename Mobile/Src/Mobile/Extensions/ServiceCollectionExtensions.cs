@@ -57,7 +57,7 @@ public static class ServiceCollectionExtensions
         services
             .AddTransient<AuthenticationHeaderHandler>()
             .AddHttpClient("mobile_client")
-            .ConfigureHttpClient(client => client.BaseAddress = new Uri("http://10.0.2.2:5001/"))
+            .ConfigureHttpClient(client => client.BaseAddress = new Uri("http://194.67.67.140:6007/"))
             .AddHttpMessageHandler<AuthenticationHeaderHandler>();
         return services;
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oiEPneHD/bVBtfi6cMBU4Jf1rBIF/70UC6Snljc/YKkSIu3w4oEAI0uQtsITZeVSIHuHLs4Ld5LtRYAsvpO4nA==",
+  "dgSpecHash": "WE61tgC07Mws3pRdozWaEb1qTeKM/yQ159FMnDtheJAhJPJQXs8Fc7EtSD5KqbiCt1DbKd/yx16ud9hzEynwbQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ilyao\\Desktop\\Projects\\QuizService\\Mobile\\Src\\Mobile\\Mobile.csproj",
   "expectedPackageFiles": [
@@ -35,7 +35,7 @@
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.maui.essentials\\8.0.14\\microsoft.maui.essentials.8.0.14.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.maui.graphics\\8.0.14\\microsoft.maui.graphics.8.0.14.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.14\\microsoft.maui.resizetizer.8.0.14.nupkg.sha512",
-    "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.3\\microsoft.net.illink.tasks.8.0.3.nupkg.sha512",
+    "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.4\\microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\xamarin.android.glide\\4.15.1.2\\xamarin.android.glide.4.15.1.2.nupkg.sha512",

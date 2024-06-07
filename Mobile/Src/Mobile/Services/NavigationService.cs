@@ -10,10 +10,9 @@ public class NavigationService : INavigationService
 {
     public Task NavigateToAsync(string route, IDictionary<string, object> parameters = null)
     {
-        if (parameters != null)
-            return Shell.Current.GoToAsync(route, true, parameters);
-        else
-            return Shell.Current.GoToAsync(route, true);
+        return parameters != null 
+            ? Shell.Current.GoToAsync(route, true, parameters)
+            : Shell.Current.GoToAsync(route, true);
     }
 
     public async Task NavigateBackAsync() =>

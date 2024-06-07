@@ -19,7 +19,7 @@ builder.Services.Configure<JwtOptions>(
 builder.Services.AddJwtAuthentication(configuration);
 
 builder.WebHost.ConfigureKestrel(serverOptions => {
-    serverOptions.ListenAnyIP(5001);
+    serverOptions.ListenAnyIP(8007);
 }).UseKestrel();
 
 var app = builder.Build();
